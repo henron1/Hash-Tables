@@ -95,9 +95,11 @@ void hash_table_insert(BasicHashTable *ht, char *key, char *value)
   {
     if (strcmp(key, stored_pair->key) != 0)
     {
-      printf("WARNING: overwriting value %s with ");
+      printf("WARNING: overwriting value '%s''/%s' with '%s' '%/s'", stored_pair->key, stored_pair->value, pair->key, pair->value);
     }
+    destroy_pair(stored_pair);
   }
+  ht->storage[index] = pair;
 }
 
 /****
