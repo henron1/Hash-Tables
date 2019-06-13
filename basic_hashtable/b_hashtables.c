@@ -109,6 +109,18 @@ void hash_table_insert(BasicHashTable *ht, char *key, char *value)
  ****/
 void hash_table_remove(BasicHashTable *ht, char *key)
 {
+  // setting out index equal to the hash function above and setting our capacity of the hash table as our max storage to use in the modulus division
+  int index = hash(key, ht->capacity);
+  // checking to see if the value at storage[index] is NULL OR if the key to storage[index] is NOT equal to key in hash
+  if (ht->storage[index] == NULL || strcmp(ht->storage[index]->key, key) != 0)
+  {
+    fprintf(stderr, "Can't remove entry with key: %s", key);
+  }
+  else
+  {
+    destroy_pair(ht->storage[index]);
+    ht->storage[index] = NULL;
+  }
 }
 
 /****
